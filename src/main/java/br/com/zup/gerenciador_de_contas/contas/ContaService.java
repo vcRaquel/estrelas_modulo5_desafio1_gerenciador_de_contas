@@ -26,4 +26,6 @@ public class ContaService {
         Iterable<Conta> contas = contaRepository.findAll();
         return (List<Conta>) contas;
     }
+
+
 }
