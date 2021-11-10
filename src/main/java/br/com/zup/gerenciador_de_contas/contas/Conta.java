@@ -1,4 +1,4 @@
-package br.com.zup.gerenciador_de_contas;
+package br.com.zup.gerenciador_de_contas.contas;
 
 import br.com.zup.gerenciador_de_contas.enuns.Tipo;
 
