@@ -20,8 +20,8 @@ public class ContaController {
     @ResponseStatus(HttpStatus.CREATED)
     public ContaSaidaDTO cadastrarConta(@RequestBody ContaDTO contaDTO){
         Conta conta = modelMapper.map(contaDTO, Conta.class);
-        contaService.salvarConta(conta);
-        ContaSaidaDTO contaSaidaDTO = modelMapper.map(contaDTO, ContaSaidaDTO.class);
+
+        ContaSaidaDTO contaSaidaDTO = modelMapper.map(contaService.salvarConta(conta), ContaSaidaDTO.class);
         return contaSaidaDTO;
     }
 

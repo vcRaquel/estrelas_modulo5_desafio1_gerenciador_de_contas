@@ -11,8 +11,8 @@ public class ContaSaidaDTO {
     private String nome;
     private double valor;
     private Tipo tipo;
-    private LocalDateTime dataDeVencimento;
-    private LocalDate dataDePagamento;
+    private LocalDate dataDeVencimento;
+    private LocalDateTime dataDePagamento;
     private Status status;
 
     public ContaSaidaDTO() {
@@ -50,19 +50,19 @@ public class ContaSaidaDTO {
         this.tipo = tipo;
     }
 
-    public LocalDateTime getDataDeVencimento() {
+    public LocalDate getDataDeVencimento() {
         return dataDeVencimento;
     }
 
-    public void setDataDeVencimento(LocalDateTime dataDeVencimento) {
+    public void setDataDeVencimento(LocalDate dataDeVencimento) {
         this.dataDeVencimento = dataDeVencimento;
     }
 
-    public LocalDate getDataDePagamento() {
+    public LocalDateTime getDataDePagamento() {
         return dataDePagamento;
     }
 
-    public void setDataDePagamento(LocalDate dataDePagamento) {
+    public void setDataDePagamento(LocalDateTime dataDePagamento) {
         this.dataDePagamento = dataDePagamento;
     }
 

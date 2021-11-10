@@ -9,7 +9,7 @@ public class ContaDTO {
     private String nome;
     private double valor;
     private Tipo tipo;
-    private Status status;
+//    private Status status;
     private LocalDate dataDeVencimento;
 
     public ContaDTO() {

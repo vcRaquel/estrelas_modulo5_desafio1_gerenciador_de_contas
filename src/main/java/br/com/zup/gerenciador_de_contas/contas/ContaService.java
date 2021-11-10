@@ -12,6 +12,7 @@ public class ContaService {
     private ContaRepository contaRepository;
 
     public Conta salvarConta(Conta conta) {
+
         if (conta.getDataDeVencimento().isBefore(LocalDate.now())) {
             conta.setStatus(Status.VENCIDA);
         }else{
