@@ -5,7 +5,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ContaService {
@@ -25,6 +27,11 @@ public class ContaService {
     public List<Conta> exibirContasCadastradas(){
         Iterable<Conta> contas = contaRepository.findAll();
         return (List<Conta>) contas;
+    }
+
+    public Conta retornarContaPorId(int id){
+      Optional<Conta> conta = contaRepository.findById(id);
+        return conta.get();
     }
 
 
