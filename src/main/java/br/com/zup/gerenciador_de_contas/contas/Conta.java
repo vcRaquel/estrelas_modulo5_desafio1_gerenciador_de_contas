@@ -10,7 +10,7 @@ import java.time.LocalDateTime;
 @Table(name ="contas")
 public class Conta {
     @Id
-    @GeneratedValue
+    @GeneratedValue()//strategyseiláoq
     private int id;
 
     @Column(nullable = false)
