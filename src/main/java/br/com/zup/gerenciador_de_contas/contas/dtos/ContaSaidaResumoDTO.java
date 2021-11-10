@@ -11,6 +11,13 @@ public class ContaSaidaResumoDTO {
     public ContaSaidaResumoDTO() {
     }
 
+    public ContaSaidaResumoDTO(int id, String nome, double valor, Status status) {
+        this.id = id;
+        this.nome = nome;
+        this.valor = valor;
+        this.status = status;
+    }
+
     public int getId() {
         return id;
     }
