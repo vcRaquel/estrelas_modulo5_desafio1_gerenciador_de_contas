@@ -1,5 +1,6 @@
 package br.com.zup.gerenciador_de_contas.contas;
 
+import br.com.zup.gerenciador_de_contas.contas.dtos.AtualizarContaDTO;
 import br.com.zup.gerenciador_de_contas.contas.dtos.ContaDTO;
 import br.com.zup.gerenciador_de_contas.contas.dtos.ContaSaidaDTO;
 import br.com.zup.gerenciador_de_contas.contas.dtos.ContaSaidaResumoDTO;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/contas")
@@ -40,6 +42,11 @@ public class ContaController {
         return contasResumoDTOS;
     }
 
-
+    @PutMapping(value = "/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public ContaSaidaDTO atualizarStatusPagamento(@PathVariable int id,
+                                                  @RequestBody AtualizarContaDTO atualizarContaDTO){
+        return modelMapper.map(contaService.atualizarConta(id), ContaSaidaDTO.class);
+    }
 
 }
