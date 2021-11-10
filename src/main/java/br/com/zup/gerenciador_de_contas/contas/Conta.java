@@ -11,7 +11,7 @@ import java.time.LocalDateTime;
 @Table(name ="contas")
 public class Conta {
     @Id
-    @GeneratedValue()//strategyseiláoq
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
     @Column(nullable = false)

@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/contas")
 public class ContaController {
+
     @Autowired
     private ContaService contaService;
     @Autowired
@@ -20,6 +21,8 @@ public class ContaController {
     public ContaSaidaDTO cadastrarConta(@RequestBody ContaDTO contaDTO){
         Conta conta = modelMapper.map(contaDTO, Conta.class);
         contaService.salvarConta(conta);
+        ContaSaidaDTO contaSaidaDTO = modelMapper.map(contaDTO, ContaSaidaDTO.class);
+        return contaSaidaDTO;
     }
 
 
