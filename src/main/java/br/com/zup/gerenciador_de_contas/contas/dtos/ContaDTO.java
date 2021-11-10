@@ -1,5 +1,6 @@
 package br.com.zup.gerenciador_de_contas.contas.dtos;
 
+import br.com.zup.gerenciador_de_contas.enuns.Status;
 import br.com.zup.gerenciador_de_contas.enuns.Tipo;
 
 import java.time.LocalDate;
@@ -8,6 +9,7 @@ public class ContaDTO {
     private String nome;
     private double valor;
     private Tipo tipo;
+    private Status status;
     private LocalDate dataDeVencimento;
 
     public ContaDTO() {
@@ -44,4 +46,6 @@ public class ContaDTO {
     public void setDataDeVencimento(LocalDate dataDeVencimento) {
         this.dataDeVencimento = dataDeVencimento;
     }
+
+
 }

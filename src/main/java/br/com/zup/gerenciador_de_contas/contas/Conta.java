@@ -1,5 +1,6 @@
 package br.com.zup.gerenciador_de_contas.contas;
 
+import br.com.zup.gerenciador_de_contas.enuns.Status;
 import br.com.zup.gerenciador_de_contas.enuns.Tipo;
 
 import javax.persistence.*;
@@ -15,6 +16,8 @@ public class Conta {
 
     @Column(nullable = false)
     private Tipo tipo;
+
+    private Status status;
 
     @Column(nullable = false)
     private String nome;
@@ -77,5 +80,13 @@ public class Conta {
 
     public void setDataDePagamento(LocalDateTime dataDePagamento) {
         this.dataDePagamento = dataDePagamento;
+    }
+
+    public Status getStatus() {
+        return status;
+    }
+
+    public void setStatus(Status status) {
+        this.status = status;
     }
 }
