@@ -5,8 +5,8 @@ import br.com.zup.gerenciador_de_contas.enuns.Status;
 public class AtualizarContaDTO {
     private Status status;
 
-    public AtualizarContaDTO(Status status) {
-        this.status = status;
+    public AtualizarContaDTO() {
+
     }
 
     public Status getStatus() {
