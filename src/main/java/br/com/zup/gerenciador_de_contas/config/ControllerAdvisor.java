@@ -1,6 +1,7 @@
 package br.com.zup.gerenciador_de_contas.config;
 
 import br.com.zup.gerenciador_de_contas.MensagemDeErro;
+import br.com.zup.gerenciador_de_contas.exceptionsPernonalizadas.StatusInvalidoException;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -23,6 +24,12 @@ public class ControllerAdvisor {
             mensagens.add(new MensagemDeErro(fieldError.getDefaultMessage()));
         }
         return mensagens;
+    }
+
+    @ExceptionHandler(StatusInvalidoException.class)
+    @ResponseStatus(HttpStatus.UNPROCESSABLE_ENTITY)
+    public MensagemDeErro manipularStatusInvalidoException(StatusInvalidoException exception){
+        return new MensagemDeErro(exception.getMessage());
     }
 }
 
