@@ -3,6 +3,7 @@ package br.com.zup.gerenciador_de_contas.contas.service;
 import br.com.zup.gerenciador_de_contas.contas.Conta;
 import br.com.zup.gerenciador_de_contas.contas.ContaRepository;
 import br.com.zup.gerenciador_de_contas.enuns.Status;
+import br.com.zup.gerenciador_de_contas.exceptionsPernonalizadas.CadastroNaoEncontradoException;
 import br.com.zup.gerenciador_de_contas.exceptionsPernonalizadas.StatusInvalidoException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -34,8 +35,11 @@ public class ContaService {
 
     public Conta retornarContaPorId(int id) {
         Optional<Conta> conta = contaRepository.findById(id);
-        return conta.get();
         //e se não tiver o id?
+        if(conta.isEmpty()){
+            throw new CadastroNaoEncontradoException("Cadastro não encontrado");
+        }
+        return conta.get();
     }
 
     public Conta atualizarConta(int id) {
