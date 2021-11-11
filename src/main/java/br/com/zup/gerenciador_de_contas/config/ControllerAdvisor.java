@@ -6,6 +6,7 @@ import br.com.zup.gerenciador_de_contas.contas.dtos.ContaSaidaDTO;
 import br.com.zup.gerenciador_de_contas.exceptionsPernonalizadas.CadastroNaoEncontradoException;
 import br.com.zup.gerenciador_de_contas.exceptionsPernonalizadas.StatusInvalidoException;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
@@ -40,5 +41,11 @@ public class ControllerAdvisor {
     }
 
 
+    //HttpMessageNotReadableException
+    @ExceptionHandler(HttpMessageNotReadableException.class)
+    @ResponseStatus(HttpStatus.UNPROCESSABLE_ENTITY)//bad request?
+    public MensagemDeErro manipularHttpMessageNotReadableException(HttpMessageNotReadableException exception){
+        return new MensagemDeErro("enun não encontrado");
+    }
 }
 
