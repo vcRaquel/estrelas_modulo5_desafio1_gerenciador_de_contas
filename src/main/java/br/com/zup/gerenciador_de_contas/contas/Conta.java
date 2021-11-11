@@ -15,8 +15,10 @@ public class Conta {
     private int id;
 
     @Column(nullable = false)
+    @Enumerated(EnumType.STRING)
     private Tipo tipo;
 
+    @Enumerated(EnumType.STRING)
     private Status status;
 
     @Column(nullable = false)
