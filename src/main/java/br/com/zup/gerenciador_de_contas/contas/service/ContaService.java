@@ -41,7 +41,7 @@ public class ContaService {
     public Conta atualizarConta(int id) {
         Conta conta = retornarContaPorId(id);
         //e se o Status colocado pelo Put for diferente de Pago?
-        if (conta.getStatus().equals(Status.PAGO)) {
+        if (conta.getStatus() != (Status.PAGO)) {
             conta.setDataDePagamento(LocalDateTime.now());
             conta.setStatus(Status.PAGO);
             contaRepository.save(conta);
