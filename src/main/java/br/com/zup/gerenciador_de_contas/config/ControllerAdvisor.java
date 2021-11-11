@@ -1,13 +1,14 @@
 package br.com.zup.gerenciador_de_contas.config;
 
 import br.com.zup.gerenciador_de_contas.MensagemDeErro;
+import br.com.zup.gerenciador_de_contas.contas.dtos.ContaDTO;
+import br.com.zup.gerenciador_de_contas.contas.dtos.ContaSaidaDTO;
+import br.com.zup.gerenciador_de_contas.exceptionsPernonalizadas.CadastroNaoEncontradoException;
 import br.com.zup.gerenciador_de_contas.exceptionsPernonalizadas.StatusInvalidoException;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
-import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.bind.annotation.ResponseStatus;
-import org.springframework.web.bind.annotation.RestControllerAdvice;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,5 +32,13 @@ public class ControllerAdvisor {
     public MensagemDeErro manipularStatusInvalidoException(StatusInvalidoException exception){
         return new MensagemDeErro(exception.getMessage());
     }
+
+    @ExceptionHandler(CadastroNaoEncontradoException.class)
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    public MensagemDeErro manipularCadastroNaoEncontradoException(CadastroNaoEncontradoException exception){
+        return new MensagemDeErro(exception.getMessage());
+    }
+
+
 }
 
