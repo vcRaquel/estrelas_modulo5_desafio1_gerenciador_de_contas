@@ -56,4 +56,9 @@ public class ContaController {
         throw new StatusInvalidoException("Status inválido para a requisição");
     }
 
+    @GetMapping(path = {"/{id}"})
+    public ContaSaidaDTO exibirConta(@PathVariable int id){
+        return modelMapper.map(contaService.retornarContaPorId(id), ContaSaidaDTO.class);
+    }
+
 }
