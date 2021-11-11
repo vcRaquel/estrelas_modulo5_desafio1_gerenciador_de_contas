@@ -32,11 +32,13 @@ public class ContaService {
     public Conta retornarContaPorId(int id){
       Optional<Conta> conta = contaRepository.findById(id);
         return conta.get();
+        //e se não tiver o id?
     }
 
     public Conta atualizarConta(int id){
         Conta conta = retornarContaPorId(id);
         conta.setDataDePagamento(LocalDateTime.now());
+        //e se o Status colocado pelo Put for diferente de Pago?
         conta.setStatus(Status.PAGO);
         contaRepository.save(conta);
         return conta;

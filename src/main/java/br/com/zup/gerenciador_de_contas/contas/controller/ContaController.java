@@ -1,5 +1,7 @@
-package br.com.zup.gerenciador_de_contas.contas;
+package br.com.zup.gerenciador_de_contas.contas.controller;
 
+import br.com.zup.gerenciador_de_contas.contas.Conta;
+import br.com.zup.gerenciador_de_contas.contas.ContaService;
 import br.com.zup.gerenciador_de_contas.contas.dtos.AtualizarContaDTO;
 import br.com.zup.gerenciador_de_contas.contas.dtos.ContaDTO;
 import br.com.zup.gerenciador_de_contas.contas.dtos.ContaSaidaDTO;
