@@ -4,6 +4,7 @@ import br.com.zup.gerenciador_de_contas.enuns.Status;
 import br.com.zup.gerenciador_de_contas.enuns.Tipo;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
+import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -15,8 +16,8 @@ public class ContaDTO {
     @Size(min = 2, message = "Nome com quantidade de caracteres inválida")
     private String nome;
 
-    //limitar as casas decimais @Currency("BRB")? @
-    @Min(value = 0, message = "Valor abaixo do permitido")
+    //limitar as casas decimais @Currency("BRB")?
+    @DecimalMin(value = "0.01", message = "Valor abaixo do permitido")
     private double valor;
 
     private Tipo tipo;
