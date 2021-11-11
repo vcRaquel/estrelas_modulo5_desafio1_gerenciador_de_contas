@@ -2,25 +2,31 @@ package br.com.zup.gerenciador_de_contas.contas.dtos;
 
 import br.com.zup.gerenciador_de_contas.enuns.Status;
 import br.com.zup.gerenciador_de_contas.enuns.Tipo;
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 public class ContaDTO {
 
-    @Size(min = 2)
+    @Size(min = 2, message = "Nome com quantidade de caracteres inválida")
     private String nome;
 
-    //limitar as casas decimais @Currency("BRB")?
-    @Min(value = 0)
+    //limitar as casas decimais @Currency("BRB")? @
+    @Min(value = 0, message = "Valor abaixo do permitido")
     private double valor;
 
     private Tipo tipo;
 
-    @NotNull
+    @NotNull(message = "Data de vencimento inválida")
+    //validar como a data é passada?
     private LocalDate dataDeVencimento;
+
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
+    private LocalDateTime dataDePagamento;
 
     public ContaDTO() {
     }
@@ -57,5 +63,11 @@ public class ContaDTO {
         this.dataDeVencimento = dataDeVencimento;
     }
 
+    public LocalDateTime getDataDePagamento() {
+        return dataDePagamento;
+    }
 
+    public void setDataDePagamento(LocalDateTime dataDePagamento) {
+        this.dataDePagamento = dataDePagamento;
+    }
 }
