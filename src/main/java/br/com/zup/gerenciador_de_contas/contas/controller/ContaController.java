@@ -1,11 +1,13 @@
 package br.com.zup.gerenciador_de_contas.contas.controller;
 
 import br.com.zup.gerenciador_de_contas.contas.Conta;
-import br.com.zup.gerenciador_de_contas.contas.ContaService;
+import br.com.zup.gerenciador_de_contas.contas.service.ContaService;
 import br.com.zup.gerenciador_de_contas.contas.dtos.AtualizarContaDTO;
 import br.com.zup.gerenciador_de_contas.contas.dtos.ContaDTO;
 import br.com.zup.gerenciador_de_contas.contas.dtos.ContaSaidaDTO;
 import br.com.zup.gerenciador_de_contas.contas.dtos.ContaSaidaResumoDTO;
+import br.com.zup.gerenciador_de_contas.enuns.Status;
+import br.com.zup.gerenciador_de_contas.exceptionsPernonalizadas.StatusInvalidoException;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -14,7 +16,6 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/contas")
@@ -49,7 +50,10 @@ public class ContaController {
     @ResponseStatus(HttpStatus.OK)
     public ContaSaidaDTO atualizarStatusPagamento(@PathVariable int id,
                                                   @RequestBody AtualizarContaDTO atualizarContaDTO){
-        return modelMapper.map(contaService.atualizarConta(id), ContaSaidaDTO.class);
+        if (atualizarContaDTO.getStatus() == Status.PAGO){
+            return modelMapper.map(contaService.atualizarConta(id), ContaSaidaDTO.class);
+        }
+        throw new StatusInvalidoException("Status inválido para a requisição");
     }
 
 }
