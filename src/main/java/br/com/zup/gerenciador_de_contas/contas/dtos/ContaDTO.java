@@ -4,10 +4,7 @@ import br.com.zup.gerenciador_de_contas.enuns.Status;
 import br.com.zup.gerenciador_de_contas.enuns.Tipo;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
-import javax.validation.constraints.DecimalMin;
-import javax.validation.constraints.Min;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.*;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
@@ -16,8 +13,9 @@ public class ContaDTO {
     @Size(min = 2, message = "Nome com quantidade de caracteres inválida")
     private String nome;
 
-    //limitar as casas decimais @Currency("BRB")?
-    @DecimalMin(value = "0.01", message = "Valor abaixo do permitido")
+
+    @DecimalMin(value = "0.0", inclusive = false, message = "Valor abaixo do permitido")
+    @Digits(integer = 10, fraction = 2, message = "Valor inválido")
     private double valor;
 
     private Tipo tipo;
@@ -26,7 +24,7 @@ public class ContaDTO {
     //validar como a data é passada?
     private LocalDate dataDeVencimento;
 
-    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime dataDePagamento;
 
     public ContaDTO() {
