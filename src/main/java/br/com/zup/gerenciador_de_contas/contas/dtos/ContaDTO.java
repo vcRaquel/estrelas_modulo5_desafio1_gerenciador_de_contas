@@ -3,13 +3,23 @@ package br.com.zup.gerenciador_de_contas.contas.dtos;
 import br.com.zup.gerenciador_de_contas.enuns.Status;
 import br.com.zup.gerenciador_de_contas.enuns.Tipo;
 
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.time.LocalDate;
 
 public class ContaDTO {
+
+    @Size(min = 2)
     private String nome;
+
+    //limitar as casas decimais @Currency("BRB")?
+    @Min(value = 0)
     private double valor;
+
     private Tipo tipo;
-//    private Status status;
+
+    @NotNull
     private LocalDate dataDeVencimento;
 
     public ContaDTO() {
