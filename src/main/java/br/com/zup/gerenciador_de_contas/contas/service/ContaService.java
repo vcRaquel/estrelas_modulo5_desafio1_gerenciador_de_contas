@@ -5,6 +5,7 @@ import br.com.zup.gerenciador_de_contas.contas.ContaRepository;
 import br.com.zup.gerenciador_de_contas.enuns.Status;
 import br.com.zup.gerenciador_de_contas.enuns.Tipo;
 import br.com.zup.gerenciador_de_contas.exceptionsPernonalizadas.CadastroNaoEncontradoException;
+import br.com.zup.gerenciador_de_contas.exceptionsPernonalizadas.StatusCadastradoException;
 import br.com.zup.gerenciador_de_contas.exceptionsPernonalizadas.StatusInvalidoException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -59,6 +60,8 @@ public class ContaService {
             conta.setStatus(Status.PAGO);
             contaRepository.save(conta);
             return conta;
+        }else if (conta.getStatus() == (Status.PAGO) ){
+            throw new StatusCadastradoException("A conta já consta como paga");
         }
         throw new StatusInvalidoException("Status inválido para a requisição");
     }
