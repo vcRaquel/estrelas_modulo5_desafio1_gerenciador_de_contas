@@ -1,6 +1,7 @@
 package br.com.zup.gerenciador_de_contas.config;
 
 import br.com.zup.gerenciador_de_contas.exceptionsPernonalizadas.CadastroNaoEncontradoException;
+import br.com.zup.gerenciador_de_contas.exceptionsPernonalizadas.StatusCadastradoException;
 import br.com.zup.gerenciador_de_contas.exceptionsPernonalizadas.StatusInvalidoException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.converter.HttpMessageNotReadableException;
@@ -43,6 +44,13 @@ public class ControllerAdvisor {
     @ResponseStatus(HttpStatus.UNPROCESSABLE_ENTITY)//bad request?
     public MensagemDeErro manipularHttpMessageNotReadableException(HttpMessageNotReadableException exception){
         return new MensagemDeErro("informação inválida para a requisição");
+    }
+
+    //StatusCadastradoException
+    @ExceptionHandler(StatusCadastradoException.class)
+    @ResponseStatus(HttpStatus.UNPROCESSABLE_ENTITY)//bad request?
+    public MensagemDeErro manipularStatusCadastradoException(StatusCadastradoException exception){
+        return new MensagemDeErro(exception.getMessage());
     }
 }
 
