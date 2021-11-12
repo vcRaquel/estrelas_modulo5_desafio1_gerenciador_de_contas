@@ -29,11 +29,13 @@ public class ContaService {
         return contaRepository.save(conta);
     }
 
-    public List<Conta> exibirContasCadastradas(Status status, Tipo tipo) {
+    public List<Conta> exibirContasCadastradas(Status status, Tipo tipo, Double valor) {
         if (status != null){
             return contaRepository.findAllByStatus(status);
         }else if (tipo != null){
             return contaRepository.findAllByTipo(tipo);
+        }else if (valor != null){
+            return contaRepository.findAllByValor(valor);
         }
 
         Iterable<Conta> contas = contaRepository.findAll();
