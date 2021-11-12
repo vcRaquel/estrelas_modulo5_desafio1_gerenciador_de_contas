@@ -8,6 +8,7 @@ import br.com.zup.gerenciador_de_contas.contas.dtos.ContaSaidaDTO;
 import br.com.zup.gerenciador_de_contas.contas.dtos.ContaSaidaResumoDTO;
 import br.com.zup.gerenciador_de_contas.enuns.Status;
 import br.com.zup.gerenciador_de_contas.enuns.Tipo;
+import br.com.zup.gerenciador_de_contas.exceptionsPernonalizadas.StatusCadastradoException;
 import br.com.zup.gerenciador_de_contas.exceptionsPernonalizadas.StatusInvalidoException;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -53,10 +54,8 @@ public class ContaController {
     @ResponseStatus(HttpStatus.OK)
     public ContaSaidaDTO atualizarStatusPagamento(@PathVariable int id,
                                                   @RequestBody AtualizarContaDTO atualizarContaDTO){
-        if (atualizarContaDTO.getStatus() == Status.PAGO){
             return modelMapper.map(contaService.atualizarConta(id), ContaSaidaDTO.class);
-        }
-        throw new StatusInvalidoException("Status inválido para a requisição");
+
     }
 
     @GetMapping(path = {"/{id}"})
