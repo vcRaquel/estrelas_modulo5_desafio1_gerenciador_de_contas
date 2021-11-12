@@ -25,8 +25,6 @@ public class ContaDTO {
     //validar como a data é passada?
     private LocalDate dataDeVencimento;
 
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    private LocalDateTime dataDePagamento;
 
     public ContaDTO() {
     }
@@ -63,11 +61,5 @@ public class ContaDTO {
         this.dataDeVencimento = dataDeVencimento;
     }
 
-    public LocalDateTime getDataDePagamento() {
-        return dataDePagamento;
-    }
 
-    public void setDataDePagamento(LocalDateTime dataDePagamento) {
-        this.dataDePagamento = dataDePagamento;
-    }
 }
