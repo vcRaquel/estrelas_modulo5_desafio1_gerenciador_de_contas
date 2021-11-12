@@ -8,6 +8,7 @@ import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -50,6 +51,13 @@ public class ControllerAdvisor {
     @ExceptionHandler(StatusCadastradoException.class)
     @ResponseStatus(HttpStatus.UNPROCESSABLE_ENTITY)//bad request?
     public MensagemDeErro manipularStatusCadastradoException(StatusCadastradoException exception){
+        return new MensagemDeErro(exception.getMessage());
+    }
+
+    //MethodArgumentTypeMismatchException
+    @ExceptionHandler(MethodArgumentTypeMismatchException.class)
+    @ResponseStatus(HttpStatus.UNPROCESSABLE_ENTITY)//bad request?
+    public MensagemDeErro manipularMethodArgumentTypeMismatchException(MethodArgumentTypeMismatchException exception){
         return new MensagemDeErro(exception.getMessage());
     }
 }
