@@ -42,7 +42,7 @@ public class ControllerAdvisor {
     @ExceptionHandler(HttpMessageNotReadableException.class)
     @ResponseStatus(HttpStatus.UNPROCESSABLE_ENTITY)//bad request?
     public MensagemDeErro manipularHttpMessageNotReadableException(HttpMessageNotReadableException exception){
-        return new MensagemDeErro("enun não encontrado");
+        return new MensagemDeErro("informação inválida para a requisição");
     }
 }
 
