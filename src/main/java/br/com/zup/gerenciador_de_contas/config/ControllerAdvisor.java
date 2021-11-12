@@ -3,6 +3,7 @@ package br.com.zup.gerenciador_de_contas.config;
 import br.com.zup.gerenciador_de_contas.exceptionsPernonalizadas.CadastroNaoEncontradoException;
 import br.com.zup.gerenciador_de_contas.exceptionsPernonalizadas.StatusCadastradoException;
 import br.com.zup.gerenciador_de_contas.exceptionsPernonalizadas.StatusInvalidoException;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.validation.FieldError;
@@ -59,6 +60,13 @@ public class ControllerAdvisor {
     @ResponseStatus(HttpStatus.UNPROCESSABLE_ENTITY)//bad request?
     public MensagemDeErro manipularMethodArgumentTypeMismatchException(MethodArgumentTypeMismatchException exception){
         return new MensagemDeErro(exception.getMessage());
+    }
+
+    //EmptyResultDataAccessException
+    @ExceptionHandler(EmptyResultDataAccessException.class)
+    @ResponseStatus(HttpStatus.UNPROCESSABLE_ENTITY)//bad request?
+    public MensagemDeErro manipularEmptyResultDataAccessException(EmptyResultDataAccessException exception){
+        return new MensagemDeErro("id não encontrado para a requisição");
     }
 }
 
