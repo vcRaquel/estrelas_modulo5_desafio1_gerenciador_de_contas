@@ -8,8 +8,8 @@ import br.com.zup.gerenciador_de_contas.contas.dtos.ContaSaidaDTO;
 import br.com.zup.gerenciador_de_contas.contas.dtos.ContaSaidaResumoDTO;
 import br.com.zup.gerenciador_de_contas.enuns.Status;
 import br.com.zup.gerenciador_de_contas.enuns.Tipo;
-import br.com.zup.gerenciador_de_contas.exceptionsPernonalizadas.StatusCadastradoException;
-import br.com.zup.gerenciador_de_contas.exceptionsPernonalizadas.StatusInvalidoException;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -21,6 +21,8 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/contas")
+@Api(value = "Gerenciador de contas")
+@CrossOrigin(origins = "*")
 public class ContaController {
 
     @Autowired
@@ -29,6 +31,7 @@ public class ContaController {
     private ModelMapper modelMapper;
 
     @PostMapping
+    @ApiOperation(value = "Cadastrar conta")
     @ResponseStatus(HttpStatus.CREATED)
     public ContaSaidaDTO cadastrarConta(@RequestBody @Valid ContaDTO contaDTO){
         Conta conta = modelMapper.map(contaDTO, Conta.class);
@@ -38,6 +41,7 @@ public class ContaController {
     }
 
     @GetMapping
+    @ApiOperation(value = "Exibir contas")
     public List<ContaSaidaResumoDTO> exibirContas(@RequestParam(required = false) Status status,
                                                   @RequestParam(required = false) Tipo tipo,
                                                   @RequestParam(required = false) Double valor){
@@ -51,6 +55,7 @@ public class ContaController {
     }
 
     @PutMapping(value = "/{id}")
+    @ApiOperation(value = "Atualizar status de pagamento")
     @ResponseStatus(HttpStatus.OK)
     public ContaSaidaDTO atualizarStatusPagamento(@PathVariable int id,
                                                   @RequestBody AtualizarContaDTO atualizarContaDTO){
@@ -59,11 +64,13 @@ public class ContaController {
     }
 
     @GetMapping(path = {"/{id}"})
+    @ApiOperation(value = "Exibir conta detalhada por id")
     public ContaSaidaDTO exibirConta(@PathVariable int id){
         return modelMapper.map(contaService.retornarContaPorId(id), ContaSaidaDTO.class);
     }
 
     @DeleteMapping(path = {"/{id}"})
+    @ApiOperation(value = "Deletar conta por id")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deletarConta(@PathVariable int id){
         contaService.deletarConta(id);

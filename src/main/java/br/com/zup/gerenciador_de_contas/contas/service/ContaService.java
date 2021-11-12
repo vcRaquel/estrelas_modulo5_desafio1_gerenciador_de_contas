@@ -45,7 +45,7 @@ public class ContaService {
 
     public Conta retornarContaPorId(int id) {
         Optional<Conta> conta = contaRepository.findById(id);
-        //e se não tiver o id?
+        //se não tiver o id:
         if(conta.isEmpty()){
             throw new CadastroNaoEncontradoException("Cadastro não encontrado");
         }
@@ -54,7 +54,7 @@ public class ContaService {
 
     public Conta atualizarConta(int id) {
         Conta conta = retornarContaPorId(id);
-        //e se o Status colocado pelo Put for diferente de Pago?
+        //se o Status colocado pelo Put for diferente de Pago:
         if (conta.getStatus() != (Status.PAGO)) {
             conta.setDataDePagamento(LocalDateTime.now());
             conta.setStatus(Status.PAGO);
