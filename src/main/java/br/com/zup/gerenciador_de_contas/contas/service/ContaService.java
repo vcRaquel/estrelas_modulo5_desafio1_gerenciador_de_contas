@@ -62,4 +62,8 @@ public class ContaService {
         }
         throw new StatusInvalidoException("Status inválido para a requisição");
     }
+
+    public void deletarConta(int id){
+        contaRepository.deleteById(id);
+    }
 }
