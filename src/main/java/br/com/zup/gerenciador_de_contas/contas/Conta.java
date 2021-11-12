@@ -24,7 +24,8 @@ public class Conta {
     @Column(nullable = false)
     private String nome;
 
-    @Column(nullable = false)
+    @Column(nullable = false) //decimal persist @Column(precision=10, scale=2)
+    // ou @Column(name="Price", columnDefinition="Decimal(10,2))
     private double valor;
 
     @Column(nullable = false)

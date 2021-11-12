@@ -1,8 +1,5 @@
 package br.com.zup.gerenciador_de_contas.config;
 
-import br.com.zup.gerenciador_de_contas.MensagemDeErro;
-import br.com.zup.gerenciador_de_contas.contas.dtos.ContaDTO;
-import br.com.zup.gerenciador_de_contas.contas.dtos.ContaSaidaDTO;
 import br.com.zup.gerenciador_de_contas.exceptionsPernonalizadas.CadastroNaoEncontradoException;
 import br.com.zup.gerenciador_de_contas.exceptionsPernonalizadas.StatusInvalidoException;
 import org.springframework.http.HttpStatus;

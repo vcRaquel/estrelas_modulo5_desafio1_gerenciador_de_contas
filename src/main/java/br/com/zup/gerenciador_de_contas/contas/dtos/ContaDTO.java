@@ -10,14 +10,15 @@ import java.time.LocalDateTime;
 
 public class ContaDTO {
 
+    @NotNull
     @Size(min = 2, message = "Nome com quantidade de caracteres inválida")
     private String nome;
-
 
     @DecimalMin(value = "0.0", inclusive = false, message = "Valor abaixo do permitido")
     @Digits(integer = 10, fraction = 2, message = "Valor inválido")
     private double valor;
 
+    @NotNull
     private Tipo tipo;
 
     @NotNull(message = "Data de vencimento inválida")
