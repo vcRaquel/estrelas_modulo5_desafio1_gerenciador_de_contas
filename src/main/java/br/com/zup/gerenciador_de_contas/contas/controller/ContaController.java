@@ -36,10 +36,10 @@ public class ContaController {
     }
 
     @GetMapping
-    public List<ContaSaidaResumoDTO> exibirContas(){
+    public List<ContaSaidaResumoDTO> exibirContas(@RequestParam(required = false) Status status){
         List<ContaSaidaResumoDTO> contasResumoDTOS = new ArrayList<>();
 
-        for (Conta conta : contaService.exibirContasCadastradas()){
+        for (Conta conta : contaService.exibirContasCadastradas(status)){
             contasResumoDTOS.add(new ContaSaidaResumoDTO(
                     conta.getId(), conta.getNome(), conta.getValor(), conta.getStatus()));
         }
