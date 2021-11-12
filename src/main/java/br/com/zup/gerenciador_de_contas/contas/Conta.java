@@ -2,6 +2,7 @@ package br.com.zup.gerenciador_de_contas.contas;
 
 import br.com.zup.gerenciador_de_contas.enuns.Status;
 import br.com.zup.gerenciador_de_contas.enuns.Tipo;
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -24,12 +25,12 @@ public class Conta {
     @Column(nullable = false)
     private String nome;
 
-    @Column(nullable = false) //decimal persist @Column(precision=10, scale=2)
-    // ou @Column(name="Price", columnDefinition="Decimal(10,2))
+    @Column(nullable = false)
     private double valor;
 
     @Column(nullable = false)
     private LocalDate dataDeVencimento;
+
 
     @Column(nullable = true)
     private LocalDateTime dataDePagamento;
