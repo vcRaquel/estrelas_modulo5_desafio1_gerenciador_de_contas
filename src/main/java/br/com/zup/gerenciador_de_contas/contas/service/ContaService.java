@@ -3,6 +3,7 @@ package br.com.zup.gerenciador_de_contas.contas.service;
 import br.com.zup.gerenciador_de_contas.contas.Conta;
 import br.com.zup.gerenciador_de_contas.contas.ContaRepository;
 import br.com.zup.gerenciador_de_contas.enuns.Status;
+import br.com.zup.gerenciador_de_contas.enuns.Tipo;
 import br.com.zup.gerenciador_de_contas.exceptionsPernonalizadas.CadastroNaoEncontradoException;
 import br.com.zup.gerenciador_de_contas.exceptionsPernonalizadas.StatusInvalidoException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,9 +29,11 @@ public class ContaService {
         return contaRepository.save(conta);
     }
 
-    public List<Conta> exibirContasCadastradas(Status status) {
+    public List<Conta> exibirContasCadastradas(Status status, Tipo tipo) {
         if (status != null){
             return contaRepository.findAllByStatus(status);
+        }else if (tipo != null){
+            return contaRepository.findAllByTipo(tipo);
         }
 
         Iterable<Conta> contas = contaRepository.findAll();
